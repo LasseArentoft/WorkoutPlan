@@ -2,18 +2,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const toggles = document.querySelectorAll('.collapsible-toggle');
 
     toggles.forEach(toggle => {
-        // Skjul indholdet som standard, undtagen for den første uge
         const content = toggle.nextElementSibling; // Får fat i den næste bror (collapsible-content)
+        const arrow = toggle.querySelector('.arrow');
+
+        // Skjul indholdet som standard ved sideindlæsning
         if (content && content.classList.contains('collapsible-content')) {
-            content.style.maxHeight = '0'; // Sætter højden til 0 for at skjule
-            content.style.overflow = 'hidden'; // Skjuler overløbende indhold
-            content.style.transition = 'max-height 0.3s ease-out, padding 0.3s ease-out'; // Glat overgang
+            content.style.maxHeight = '0';
+            content.style.overflow = 'hidden';
             content.style.paddingTop = '0';
             content.style.paddingBottom = '0';
-            // Opdater pilen til at pege ned (skjult indhold)
-            const arrow = toggle.querySelector('.arrow');
+            // Sørg for transition er sat, selvom det er skjult
+            content.style.transition = 'max-height 0.3s ease-out, padding 0.3s ease-out'; 
+            
             if (arrow) {
-                arrow.style.transform = 'rotate(0deg)';
+                arrow.style.transform = 'rotate(0deg)'; // Pil ned, når indhold er skjult
                 arrow.style.transition = 'transform 0.3s ease-out';
             }
         }
@@ -24,9 +26,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (content.style.maxHeight === '0px' || content.style.maxHeight === '') {
                 // Udvid indhold
-                content.style.maxHeight = content.scrollHeight + 'px'; // Sæt max-height til indholdets fulde højde
-                content.style.paddingTop = '15px'; // Tilføj padding tilbage
-                content.style.paddingBottom = '15px'; // Tilføj padding tilbage
+                // Beregn den samlede højde, inklusiv padding
+                const contentPaddingTop = parseFloat(window.getComputedStyle(content).paddingTop);
+                const contentPaddingBottom = parseFloat(window.getComputedStyle(content).paddingBottom);
+                content.style.maxHeight = (content.scrollHeight + contentPaddingTop + contentPaddingBottom) + 'px';
+                
+                content.style.paddingTop = '15px'; // Tilføj padding tilbage (match CSS)
+                content.style.paddingBottom = '15px'; // Tilføj padding tilbage (match CSS)
+                
                 if (arrow) {
                     arrow.style.transform = 'rotate(180deg)'; // Roter pilen op
                 }
