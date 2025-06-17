@@ -76,19 +76,61 @@ h4 {
 }
 
 /* Tempozoner styling */
-.tempo-zone {
-    background-color: #e8f5e9; /* Meget lys grøn */
-    border-left: 5px solid #4CAF50;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 5px;
+.tempo-zone-list {
+    list-style: none; /* Fjerner standard punkttegn */
+    padding: 0;
+    margin: 20px 0; /* Giver lidt afstand over og under listen */
+    display: grid; /* Bruger CSS Grid for at organisere elementerne */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsivt grid */
+    gap: 20px; /* Afstand mellem grid-elementerne */
 }
 
-.tempo-zone h3 {
-    margin-top: 0;
-    color: #333; /* Gør h3 inden i boksen mørk */
-    border-left: none; /* Fjern venstre streg i h3 her */
+.tempo-zone-list li {
+    background-color: #e8f5e9; /* Meget lys grøn */
+    border-left: 5px solid #4CAF50; /* Grøn kant til venstre */
+    padding: 20px;
+    border-radius: 8px; /* Lidt afrundede hjørner */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Let skygge */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Skubber indholdet fra top til bund */
+}
+
+.tempo-zone-list li h3 {
+    margin-top: 0; /* Fjern standard margin fra h3 */
+    margin-bottom: 10px; /* Afstand til tempobeskrivelsen */
+    color: #2c3e50; /* Mørkere farve for klarhed */
+    border-left: none; /* Fjern venstre streg for h3 i tempo-zonen */
     padding-left: 0;
+    font-size: 1.3em;
+}
+
+.tempo-zone-list li p {
+    margin-bottom: 8px; /* Mindre afstand mellem afsnit */
+}
+
+.tempo-zone-list li p:last-of-type {
+    margin-bottom: 0; /* Ingen margin under sidste afsnit */
+    font-size: 0.95em; /* Lidt mindre tekst til formål */
+    color: #555;
+}
+
+.tempo-zone-list li p strong {
+    font-size: 1.1em; /* Gør tempoet en smule større */
+    color: #4CAF50; /* Grøn farve til tempoet */
+}
+
+
+
+/* Tilføj dette i din @media (max-width: 768px) sektion for bedre mobilvisning */
+@media (max-width: 768px) {
+    /* ... (eksisterende mobilregler) ... */
+    .tempo-zone-list {
+        grid-template-columns: 1fr; /* På mobil, én kolonne */
+    }
+    .tempo-zone-list li {
+        padding: 15px;
+    }
 }
 
 /* Principper & Faser styling */
