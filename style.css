@@ -1,31 +1,224 @@
+/* Grundlæggende typografi og farver */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif; /* En god, læselig skrifttype */
+    line-height: 1.6; /* Gør teksten lettere at læse */
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #f8f8f8; /* Let grå baggrund */
+    color: #333; /* Mørkegrå tekstfarve */
+}
+
+/* Header styling */
+header {
+    background-color: #2c3e50; /* Mørk blågrå */
+    color: #ffffff;
+    padding: 2em 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Lille skygge for dybde */
+}
+
+header h1 {
+    font-size: 2.5em; /* Større overskrift */
+    margin-bottom: 0.5em;
+    color: #4CAF50; /* Grøn til titel */
+}
+
+.intro-text {
+    font-size: 1.1em;
+    max-width: 800px;
+    margin: 0.5em auto 0;
+    padding: 0 20px;
+}
+
+/* Main indhold sektioner */
+main {
+    max-width: 1000px; /* Begræns bredden for bedre læsbarhed */
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05); /* Let skygge til hele indholdet */
+    border-radius: 8px; /* Lidt afrundede hjørner */
+}
+
+section {
+    margin-bottom: 40px; /* Afstand mellem sektioner */
+    padding-bottom: 20px; /* Indre afstand i sektioner */
+    border-bottom: 1px solid #eee; /* Linje mellem sektioner */
+}
+
+section:last-of-type {
+    border-bottom: none; /* Ingen linje efter sidste sektion */
+}
+
+h2 {
+    color: #2c3e50;
+    font-size: 2em;
+    border-bottom: 2px solid #4CAF50; /* Grøn understregning */
+    padding-bottom: 10px;
+    margin-bottom: 20px;
     text-align: center;
 }
 
-header {
-    background-color: #4CAF50; /* Grøn farve */
-    color: white;
-    padding: 1em 0;
+h3 {
+    color: #34495e; /* Lidt lysere blågrå */
+    font-size: 1.5em;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-left: 5px solid #4CAF50; /* Grøn linje til venstre */
+    padding-left: 10px;
 }
 
-h1 {
-    margin: 0;
+h4 {
+    color: #555;
+    font-size: 1.2em;
+    margin-top: 25px;
+    margin-bottom: 10px;
 }
 
-main {
+/* Tempozoner styling */
+.tempo-zone {
+    background-color: #e8f5e9; /* Meget lys grøn */
+    border-left: 5px solid #4CAF50;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.tempo-zone h3 {
+    margin-top: 0;
+    color: #333; /* Gør h3 inden i boksen mørk */
+    border-left: none; /* Fjern venstre streg i h3 her */
+    padding-left: 0;
+}
+
+/* Principper & Faser styling */
+#principper-faser ul {
+    list-style: none; /* Fjern standard punkttegn */
+    padding: 0;
+    margin-top: 20px;
+}
+
+#principper-faser ul li {
+    background-color: #f2f2f2;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.training-phase {
+    background-color: #e0f2f7; /* Lys blå */
+    border-left: 5px solid #3498db; /* Blå kant */
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+/* Træningsplan styling */
+.phase-section {
+    background-color: #ffffff;
     padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    border: 1px solid #eee;
 }
 
+.phase-goal {
+    font-style: italic;
+    color: #666;
+    margin-top: -10px; /* Mindre afstand til overskrift */
+    margin-bottom: 20px;
+}
+
+.week-plan {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.week-plan h5 {
+    color: #4CAF50;
+    font-size: 1.1em;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.week-plan ul {
+    list-style: none;
+    padding: 0;
+}
+
+.week-plan ul li {
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.week-plan ul li::before {
+    content: '→'; /* Bruger en pil som punkttegn */
+    position: absolute;
+    left: 0;
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+/* Styrketræning og Udstrækning styling */
+.exercise, .stretch {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.exercise h3, .stretch h4 {
+    color: #333;
+    margin-top: 0;
+    border-left: none;
+    padding-left: 0;
+}
+
+.exercise p, .stretch p {
+    margin-bottom: 5px;
+}
+
+.exercise p strong, .stretch p strong {
+    color: #2c3e50;
+}
+
+/* Footer styling */
 footer {
     background-color: #333;
     color: white;
-    padding: 1em 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    text-align: center;
+    padding: 1.5em 0;
+    margin-top: 40px;
+    font-size: 0.9em;
+}
+
+/* Responsivt design for mindre skærme */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    h3 {
+        font-size: 1.3em;
+    }
+
+    main {
+        margin: 10px auto;
+        padding: 15px;
+    }
+
+    .tempo-zone, .training-phase, .week-plan, .exercise, .stretch {
+        padding: 10px;
+        margin-bottom: 15px;
+    }
 }
