@@ -114,7 +114,7 @@ h4 {
     border-radius: 5px;
 }
 
-/* Træningsplan styling */
+/* Træningsplan styling - Justeret for collapsible */
 .phase-section {
     background-color: #ffffff;
     padding: 20px;
@@ -130,39 +130,77 @@ h4 {
     margin-bottom: 20px;
 }
 
+/* .week-plan-container is no longer needed as week-plan is now the toggle */
+/* .week-plan no longer holds the ul directly, it's now the toggle */
 .week-plan {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    margin-bottom: 0px; /* Fjern margin-bottom fra week-plan da collapsible-toggle har den */
+}
+
+/* CSS for collapsible functionality */
+.collapsible-toggle {
+    cursor: pointer; /* Gør det tydeligt, at det er klikbart */
+    display: flex; /* Brug flexbox for at placere pilen */
+    justify-content: space-between; /* Skub pilen til højre */
+    align-items: center;
+    user-select: none; /* Forhindrer tekstmarkering ved gentagne klik */
+    background-color: #e6e6e6; /* Lidt mørkere baggrund for at skille sig ud */
     padding: 15px;
-    margin-bottom: 20px;
+    border-radius: 5px;
+    margin-top: 20px; /* Afstand fra forrige uge/element */
+    margin-bottom: 0px; /* collapsible-content vil sidde lige under */
+    transition: background-color 0.3s ease; /* Glat farveovergang ved hover */
 }
 
-.week-plan h5 {
-    color: #4CAF50;
+.collapsible-toggle:hover {
+    background-color: #dcdcdc; /* Lidt mørkere ved hover */
+}
+
+.collapsible-toggle h5 {
+    color: #4CAF50; /* Grøn farve til ugenummeret */
     font-size: 1.1em;
-    margin-top: 0;
-    margin-bottom: 10px;
+    margin: 0; /* Fjern standard margin fra h5 */
 }
 
-.week-plan ul {
-    list-style: none;
+.collapsible-content {
+    overflow: hidden; /* Skjuler indhold der "vælter ud" */
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out; /* Glat overgang */
+    padding: 15px; /* Standard padding når den er åben */
+    background-color: #f9f9f9; /* Baggrund for det udvidede indhold */
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0 0 5px 5px; /* Afrund kun bundhjørnerne */
+    margin-top: 0px; /* Sidder tæt på togglen */
+    margin-bottom: 20px; /* Afstand til næste week-plan/toggle */
+    box-sizing: border-box; /* Sørg for at padding er inkluderet i bredden */
+}
+
+.collapsible-content ul {
+    list-style: none; /* Fjern standard punkttegn */
     padding: 0;
+    margin: 0; /* Fjern standard margin */
 }
 
-.week-plan ul li {
+.collapsible-content ul li {
     margin-bottom: 8px;
-    padding-left: 20px;
+    padding-left: 20px; /* Tilføj padding til venstre for pænt indryk */
     position: relative;
 }
 
-.week-plan ul li::before {
+.collapsible-content ul li::before {
     content: '→'; /* Bruger en pil som punkttegn */
     position: absolute;
     left: 0;
     color: #4CAF50;
     font-weight: bold;
 }
+
+.arrow {
+    font-size: 0.8em;
+    transition: transform 0.3s ease-out; /* Glat rotation af pil */
+    margin-left: 10px; /* Afstand til tekst */
+}
+
 
 /* Styrketræning og Udstrækning styling */
 .exercise, .stretch {
@@ -217,8 +255,17 @@ footer {
         padding: 15px;
     }
 
-    .tempo-zone, .training-phase, .week-plan, .exercise, .stretch {
+    .tempo-zone, .training-phase, .exercise, .stretch {
         padding: 10px;
         margin-bottom: 15px;
+    }
+
+    .collapsible-toggle, .collapsible-content {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .collapsible-content ul li {
+        padding-left: 15px;
     }
 }
