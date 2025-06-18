@@ -251,23 +251,62 @@ h4 {
 }
 
 .collapsible-content ul li {
-    margin-bottom: 8px;
-    padding-left: 20px; /* Tilføj padding til venstre for pænt indryk */
+    padding-left: 40px; /* Giv plads til checkmark/knap. Fra 20px til 40px */
     position: relative;
+    margin-bottom: 8px; /* Standard afstand mellem listepunkter */
 }
 
+/* Fjern den gamle pil, da vi nu har vores egen markør */
 .collapsible-content ul li::before {
-    content: '→'; /* Bruger en pil som punkttegn */
-    position: absolute;
-    left: 0;
-    color: #4CAF50;
-    font-weight: bold;
+    display: none; /* Skjul den gamle pil */
 }
 
 .arrow {
     font-size: 0.8em;
     transition: transform 0.3s ease-out; /* Glat rotation af pil */
     margin-left: 10px; /* Afstand til tekst */
+}
+
+
+/* Styling for completion toggle */
+.completion-toggle {
+    position: absolute;
+    left: 10px; /* Juster positionen for markøren */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px; /* Størrelse på markøren */
+    height: 20px;
+    border: 2px solid #ccc; /* Grå kant som standard */
+    border-radius: 4px; /* Lidt afrundede hjørner */
+    cursor: pointer;
+    background-color: #fff; /* Hvid baggrund */
+    display: flex; /* Centrer indhold (hvis vi bruger et ikon) */
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em; /* Størrelse på check-tegnet */
+    color: transparent; /* Ingen farve som standard (usynlig) */
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.completion-toggle:hover {
+    border-color: #4CAF50; /* Grøn kant ved hover */
+}
+
+/* Styling for gennemført pas */
+.collapsible-content ul li.completed .completion-toggle {
+    background-color: #4CAF50; /* Grøn baggrund når gennemført */
+    border-color: #4CAF50;
+    color: #fff; /* Hvidt check-tegn */
+}
+
+.collapsible-content ul li.completed .completion-toggle::after {
+    content: '✓'; /* Check-tegn */
+    font-weight: bold;
+}
+
+.collapsible-content ul li.completed {
+    opacity: 0.7; /* Gør teksten lidt gennemsigtig */
+    /* text-decoration: line-through; */ /* Overstregning hvis du vil have det */
 }
 
 
@@ -339,9 +378,13 @@ footer {
     }
 
     .collapsible-content ul li {
-        padding-left: 15px;
+        padding-left: 35px; /* Lidt mindre padding på mobil for at spare plads */
     }
     
+    .completion-toggle {
+        left: 5px; /* Juster position på mobil for at spare plads */
+    }
+
     .exercise, .stretch {
         padding: 10px;
         margin-bottom: 15px;
