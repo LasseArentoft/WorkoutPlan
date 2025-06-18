@@ -30,6 +30,45 @@ header h1 {
     padding: 0 20px;
 }
 
+/* Styling for main navigation (NY) */
+.main-nav {
+    background-color: #34495e; /* Mørkere blågrå, matcher header lidt */
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky; /* Menuen bliver "sticky" når man scroller */
+    top: 0; /* Klæber sig til toppen */
+    z-index: 1000; /* Sikrer at menuen ligger øverst */
+}
+
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Brug flexbox for at placere links ved siden af hinanden */
+    justify-content: center; /* Centrer links horisontalt */
+    flex-wrap: wrap; /* Gør at links kan bryde om på flere linjer på små skærme */
+}
+
+.main-nav ul li {
+    margin: 0 15px; /* Afstand mellem menupunkter */
+}
+
+.main-nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: block; /* Gør hele link-området klikbart */
+}
+
+.main-nav ul li a:hover,
+.main-nav ul li a:focus {
+    background-color: #4CAF50; /* Grøn baggrund ved hover/fokus */
+    color: #ffffff;
+}
+
 /* Main indhold sektioner */
 main {
     max-width: 1000px; /* Begræns bredden for bedre læsbarhed */
@@ -372,6 +411,26 @@ footer {
         margin-bottom: 15px; /* Reintroducer margin-bottom for mobil liste-elementer */
     }
 
+    /* Navigation for mobil */
+    .main-nav ul li {
+        margin: 5px 10px; /* Mindre margin på mobil */
+    }
+
+    .main-nav ul li a {
+        font-size: 0.9em; /* Mindre skriftstørrelse på mobil */
+        padding: 6px 10px; /* Mindre padding på mobil */
+    }
+
+    @media (max-width: 500px) {
+        .main-nav ul {
+            flex-direction: column; /* Stak links vertikalt på meget små skærme */
+            align-items: center; /* Centrer dem når de er stablet */
+        }
+        .main-nav ul li {
+            margin: 5px 0; /* Juster margin for vertikal stak */
+        }
+    }
+
     .collapsible-toggle, .collapsible-content {
         padding-left: 10px;
         padding-right: 10px;
@@ -380,7 +439,7 @@ footer {
     .collapsible-content ul li {
         padding-left: 35px; /* Lidt mindre padding på mobil for at spare plads */
     }
-    
+
     .completion-toggle {
         left: 5px; /* Juster position på mobil for at spare plads */
     }
