@@ -1,451 +1,221 @@
-/* Grundlæggende typografi og farver */
-body {
-    font-family: 'Arial', sans-serif; /* En god, læselig skrifttype */
-    line-height: 1.6; /* Gør teksten lettere at læse */
+/* --- CSS Variabler --- */
+:root {
+    --primary-color: #00E676; /* Energisk løbe-grøn */
+    --primary-dark: #00C853;
+    --dark-bg: #121212;
+    --light-bg: #f4f4f9;
+    --text-main: #333;
+    --text-light: #fff;
+    --font-main: 'Inter', sans-serif;
+}
+
+/* --- Reset & Basis --- */
+* {
     margin: 0;
     padding: 0;
-    background-color: #f8f8f8; /* Let grå baggrund */
-    color: #333; /* Mørkegrå tekstfarve */
+    box-sizing: border-box;
 }
 
-/* Header styling */
-header {
-    background-color: #2c3e50; /* Mørk blågrå */
-    color: #ffffff;
-    padding: 2em 0;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Lille skygge for dybde */
+body {
+    font-family: var(--font-main);
+    color: var(--text-main);
+    background-color: var(--light-bg);
+    line-height: 1.6;
 }
 
-header h1 {
-    font-size: 2.5em; /* Større overskrift */
-    margin-bottom: 0.5em;
-    color: #4CAF50; /* Grøn til titel */
+html {
+    scroll-behavior: smooth;
 }
 
-.intro-text {
-    font-size: 1.1em;
-    max-width: 800px;
-    margin: 0.5em auto 0;
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
     padding: 0 20px;
 }
 
-/* Styling for main navigation (NY) */
-.main-nav {
-    background-color: #34495e; /* Mørkere blågrå, matcher header lidt */
-    padding: 10px 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    position: sticky; /* Menuen bliver "sticky" når man scroller */
-    top: 0; /* Klæber sig til toppen */
-    z-index: 1000; /* Sikrer at menuen ligger øverst */
+/* --- Typografi & Knapper --- */
+h1, h2 {
+    font-weight: 900;
+    margin-bottom: 15px;
 }
 
-.main-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex; /* Brug flexbox for at placere links ved siden af hinanden */
-    justify-content: center; /* Centrer links horisontalt */
-    flex-wrap: wrap; /* Gør at links kan bryde om på flere linjer på små skærme */
-}
-
-.main-nav ul li {
-    margin: 0 15px; /* Afstand mellem menupunkter */
-}
-
-.main-nav ul li a {
-    color: #ffffff;
+.btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--dark-bg);
+    padding: 12px 24px;
     text-decoration: none;
     font-weight: bold;
-    padding: 8px 12px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    display: block; /* Gør hele link-området klikbart */
+    border-radius: 30px;
+    transition: background 0.3s;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
 }
 
-.main-nav ul li a:hover,
-.main-nav ul li a:focus {
-    background-color: #4CAF50; /* Grøn baggrund ved hover/fokus */
-    color: #ffffff;
+.btn:hover {
+    background-color: var(--primary-dark);
 }
 
-/* Main indhold sektioner */
-main {
-    max-width: 1000px; /* Begræns bredden for bedre læsbarhed */
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.05); /* Let skygge til hele indholdet */
-    border-radius: 8px; /* Lidt afrundede hjørner */
+.btn-dark {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
 }
 
-section {
-    margin-bottom: 40px; /* Afstand mellem sektioner */
-    padding-bottom: 20px; /* Indre afstand i sektioner */
-    border-bottom: 1px solid #eee; /* Linje mellem sektioner */
+.btn-dark:hover {
+    background-color: #333;
 }
 
-section:last-of-type {
-    border-bottom: none; /* Ingen linje efter sidste sektion */
+/* --- Navigation --- */
+header {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-h2 {
-    color: #2c3e50;
-    font-size: 2em;
-    border-bottom: 2px solid #4CAF50; /* Grøn understregning */
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.logo span {
+    color: var(--primary-color);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: var(--primary-color);
+}
+
+/* --- Hero Sektion --- */
+.hero {
+    background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.8)), url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=2070&auto=format&fit=crop') center/cover;
+    color: var(--text-light);
+    padding: 120px 0;
     text-align: center;
 }
 
-h3 {
-    color: #34495e; /* Lidt lysere blågrå */
-    font-size: 1.5em;
-    margin-top: 30px;
-    margin-bottom: 15px;
-    border-left: 5px solid #4CAF50; /* Grøn linje til venstre */
-    padding-left: 10px;
+.hero h1 {
+    font-size: 3.5rem;
 }
 
-h4 {
-    color: #555;
-    font-size: 1.2em;
-    margin-top: 25px;
-    margin-bottom: 10px;
+.hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+    opacity: 0.9;
 }
 
-/* Tempozoner styling */
-.tempo-zone-list {
-    list-style: none; /* Fjerner standard punkttegn */
-    padding: 0;
-    margin: 20px 0; /* Giver lidt afstand over og under listen */
-    display: grid; /* Bruger CSS Grid for at organisere elementerne */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsivt grid */
-    gap: 20px; /* Afstand mellem grid-elementerne */
+/* --- Info Sektion --- */
+.info-section {
+    padding: 80px 20px;
+    text-align: center;
 }
 
-.tempo-zone-list li {
-    background-color: #e8f5e9; /* Meget lys grøn */
-    border-left: 5px solid #4CAF50; /* Grøn kant til venstre */
-    padding: 20px;
-    border-radius: 8px; /* Lidt afrundede hjørner */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Let skygge */
+.info-text {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* --- Beregner Sektion --- */
+.calculator-section {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    padding: 80px 0;
+}
+
+.calc-card {
+    background-color: #1e1e1e;
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.form-group {
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Skubber indholdet fra top til bund */
 }
 
-.tempo-zone-list li h3 {
-    margin-top: 0; /* Fjern standard margin fra h3 */
-    margin-bottom: 10px; /* Afstand til tempobeskrivelsen */
-    color: #2c3e50; /* Mørkere farve for klarhed */
-    border-left: none; /* Fjern venstre streg for h3 i tempo-zonen */
-    padding-left: 0;
-    font-size: 1.3em;
-}
-
-.tempo-zone-list li p {
-    margin-bottom: 8px; /* Mindre afstand mellem afsnit */
-}
-
-.tempo-zone-list li p:last-of-type {
-    margin-bottom: 0; /* Ingen margin under sidste afsnit */
-    font-size: 0.95em; /* Lidt mindre tekst til formål */
-    color: #555;
-}
-
-.tempo-zone-list li p strong {
-    font-size: 1.1em; /* Gør tempoet en smule større */
-    color: #4CAF50; /* Grøn farve til tempoet */
-}
-
-
-/* Principper & Faser styling */
-#principper-faser h3 {
-    /* Genbrug den generelle h3 styling, eller juster specifikt for denne sektion */
-    color: #34495e;
-    font-size: 1.5em;
-    margin-top: 30px;
-    margin-bottom: 15px;
-    border-left: 5px solid #4CAF50; /* Grøn linje til venstre */
-    padding-left: 10px;
-}
-
-.principles-list {
-    list-style: none; /* Fjern standard punkttegn */
-    padding: 0;
-    margin-top: 20px;
-    margin-bottom: 40px; /* Afstand til næste h3 eller list */
-}
-
-.principles-list li {
-    background-color: #f2f2f2; /* En let grå baggrund for hvert punkt */
-    margin-bottom: 10px;
-    padding: 12px 15px;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Let skygge */
-    border-left: 3px solid #66bb6a; /* En lysere grøn streg til venstre */
-}
-
-.principles-list li strong {
-    color: #2c3e50; /* Mørkere farve for principperne */
-}
-
-.training-phase-list {
-    list-style: none; /* Fjerner standard punkttegn */
-    padding: 0;
-    margin: 20px 0; /* Giver lidt afstand over og under listen */
-    display: grid; /* Bruger CSS Grid for at organisere elementerne */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsivt grid, lidt mindre end tempozoner, da indholdet er mindre */
-    gap: 20px; /* Afstand mellem grid-elementerne */
-}
-
-.training-phase-list li {
-    background-color: #e0f2f7; /* Lys blå baggrund, som tidligere .training-phase */
-    border-left: 5px solid #3498db; /* Blå kant */
-    padding: 20px;
-    margin-bottom: 0; /* Ingen margin-bottom her, da gap håndterer afstand */
-    border-radius: 8px; /* Afrundede hjørner */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Let skygge */
-}
-
-.training-phase-list li h4 {
-    margin-top: 0;
-    margin-bottom: 10px;
-    color: #2c3e50; /* Mørkere farve for klarhed */
-    font-size: 1.2em; /* Lidt større end generel h4 */
-}
-
-.training-phase-list li p {
-    margin-bottom: 0; /* Fjern margin under sidste afsnit */
-    font-size: 0.95em;
-    color: #555;
-}
-
-
-/* Træningsplan styling - Justeret for collapsible */
-.phase-section {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 30px;
-    border: 1px solid #eee;
-}
-
-.phase-goal {
-    font-style: italic;
-    color: #666;
-    margin-top: -10px; /* Mindre afstand til overskrift */
-    margin-bottom: 20px;
-}
-
-/* .week-plan no longer holds the ul directly, it's now the toggle */
-.week-plan {
-    margin-bottom: 0px; /* Fjern margin-bottom fra week-plan da collapsible-toggle har den */
-}
-
-/* CSS for collapsible functionality */
-.collapsible-toggle {
-    cursor: pointer; /* Gør det tydeligt, at det er klikbart */
-    display: flex; /* Brug flexbox for at placere pilen */
-    justify-content: space-between; /* Skub pilen til højre */
-    align-items: center;
-    user-select: none; /* Forhindrer tekstmarkering ved gentagne klik */
-    background-color: #e6e6e6; /* Lidt mørkere baggrund for at skille sig ud */
-    padding: 15px;
-    border-radius: 5px;
-    margin-top: 20px; /* Afstand fra forrige uge/element */
-    margin-bottom: 0px; /* collapsible-content vil sidde lige under */
-    transition: background-color 0.3s ease; /* Glat farveovergang ved hover */
-}
-
-.collapsible-toggle:hover {
-    background-color: #dcdcdc; /* Lidt mørkere ved hover */
-}
-
-.collapsible-toggle h5 {
-    color: #4CAF50; /* Grøn farve til ugenummeret */
-    font-size: 1.1em;
-    margin: 0; /* Fjern standard margin fra h5 */
-}
-
-.collapsible-content {
-    overflow: hidden; /* Skjuler indhold der "vælter ud" */
-    transition: max-height 0.3s ease-out, padding 0.3s ease-out; /* Glat overgang */
-    padding: 15px; /* Standard padding når den er åben */
-    background-color: #f9f9f9; /* Baggrund for det udvidede indhold */
-    border-left: 1px solid #ddd;
-    border-right: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    border-radius: 0 0 5px 5px; /* Afrund kun bundhjørnerne */
-    margin-top: 0px; /* Sidder tæt på togglen */
-    margin-bottom: 20px; /* Afstand til næste week-plan/toggle */
-    box-sizing: border-box; /* Sørg for at padding er inkluderet i bredden */
-}
-
-.collapsible-content ul {
-    list-style: none; /* Fjern standard punkttegn */
-    padding: 0;
-    margin: 0; /* Fjern standard margin */
-}
-
-.collapsible-content ul li {
-    padding-left: 40px; /* Giv plads til checkmark/knap. Fra 20px til 40px */
-    position: relative;
-    margin-bottom: 8px; /* Standard afstand mellem listepunkter */
-}
-
-/* Fjern den gamle pil, da vi nu har vores egen markør */
-.collapsible-content ul li::before {
-    display: none; /* Skjul den gamle pil */
-}
-
-.arrow {
-    font-size: 0.8em;
-    transition: transform 0.3s ease-out; /* Glat rotation af pil */
-    margin-left: 10px; /* Afstand til tekst */
-}
-
-
-/* Styling for completion toggle */
-.completion-toggle {
-    position: absolute;
-    left: 10px; /* Juster positionen for markøren */
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px; /* Størrelse på markøren */
-    height: 20px;
-    border: 2px solid #ccc; /* Grå kant som standard */
-    border-radius: 4px; /* Lidt afrundede hjørner */
-    cursor: pointer;
-    background-color: #fff; /* Hvid baggrund */
-    display: flex; /* Centrer indhold (hvis vi bruger et ikon) */
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2em; /* Størrelse på check-tegnet */
-    color: transparent; /* Ingen farve som standard (usynlig) */
-    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-}
-
-.completion-toggle:hover {
-    border-color: #4CAF50; /* Grøn kant ved hover */
-}
-
-/* Styling for gennemført pas */
-.collapsible-content ul li.completed .completion-toggle {
-    background-color: #4CAF50; /* Grøn baggrund når gennemført */
-    border-color: #4CAF50;
-    color: #fff; /* Hvidt check-tegn */
-}
-
-.collapsible-content ul li.completed .completion-toggle::after {
-    content: '✓'; /* Check-tegn */
-    font-weight: bold;
-}
-
-.collapsible-content ul li.completed {
-    opacity: 0.7; /* Gør teksten lidt gennemsigtig */
-    /* text-decoration: line-through; */ /* Overstregning hvis du vil have det */
-}
-
-
-/* Styrketræning og Udstrækning styling */
-.exercise, .stretch {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 15px;
-    margin-bottom: 20px;
-}
-
-.exercise h3, .stretch h4 {
-    color: #333;
-    margin-top: 0;
-    border-left: none;
-    padding-left: 0;
-}
-
-.exercise p, .stretch p {
+.form-group label {
     margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--primary-color);
 }
 
-.exercise p strong, .stretch p strong {
-    color: #2c3e50;
-}
-
-/* Footer styling */
-footer {
-    background-color: #333;
+.form-group input {
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #333;
+    background-color: #2c2c2c;
     color: white;
-    text-align: center;
-    padding: 1.5em 0;
-    margin-top: 40px;
-    font-size: 0.9em;
+    font-size: 1rem;
 }
 
-/* Responsivt design for mindre skærme */
+.time-inputs {
+    display: flex;
+    gap: 15px;
+}
+
+.time-inputs .form-group {
+    flex: 1;
+}
+
+.result-box {
+    margin-top: 25px;
+    padding: 20px;
+    background-color: var(--primary-color);
+    color: var(--dark-bg);
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+/* --- Footer --- */
+footer {
+    background-color: #0a0a0a;
+    color: #888;
+    text-align: center;
+    padding: 30px 0;
+}
+
+/* --- Responsivitet --- */
 @media (max-width: 768px) {
-    header h1 {
-        font-size: 1.8em;
+    .nav-container {
+        flex-direction: column;
+        gap: 15px;
     }
-
-    h2 {
-        font-size: 1.5em;
-    }
-
-    h3 {
-        font-size: 1.3em;
-    }
-
-    main {
-        margin: 10px auto;
-        padding: 15px;
-    }
-
-    /* Justeret for de nye grid-layouts */
-    .tempo-zone-list, .training-phase-list {
-        grid-template-columns: 1fr; /* På mobil, én kolonne */
-    }
-    .tempo-zone-list li, .training-phase-list li, .principles-list li {
-        padding: 15px;
-        margin-bottom: 15px; /* Reintroducer margin-bottom for mobil liste-elementer */
-    }
-
-    /* Navigation for mobil */
-    .main-nav ul li {
-        margin: 5px 10px; /* Mindre margin på mobil */
-    }
-
-    .main-nav ul li a {
-        font-size: 0.9em; /* Mindre skriftstørrelse på mobil */
-        padding: 6px 10px; /* Mindre padding på mobil */
-    }
-
-    @media (max-width: 500px) {
-        .main-nav ul {
-            flex-direction: column; /* Stak links vertikalt på meget små skærme */
-            align-items: center; /* Centrer dem når de er stablet */
-        }
-        .main-nav ul li {
-            margin: 5px 0; /* Juster margin for vertikal stak */
-        }
-    }
-
-    .collapsible-toggle, .collapsible-content {
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
-    .collapsible-content ul li {
-        padding-left: 35px; /* Lidt mindre padding på mobil for at spare plads */
-    }
-
-    .completion-toggle {
-        left: 5px; /* Juster position på mobil for at spare plads */
-    }
-
-    .exercise, .stretch {
-        padding: 10px;
-        margin-bottom: 15px;
+    .hero h1 {
+        font-size: 2.5rem;
     }
 }
