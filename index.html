@@ -103,11 +103,16 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="start-delay">Start-forsinkelse (sekunder)</label>
-                            <input type="number" id="start-delay" step="1" min="0" max="60" value="10" required>
-                            <small>Hvor mange sekunder langsommere end dit gennemsnitspace vil du løbe 1. kilometer?</small>
-                        </div>
+                       <!-- Den nye dynamiske slider -->
+<div class="form-group">
+    <label for="start-delay">Vælg din startstrategi (Sekunder langsommere pr. km på 1. kilometer)</label>
+    <input type="range" id="start-delay" min="0" max="20" step="1" value="10">
+    
+    <!-- Herindsætter JavaScriptet realtids-teksten -->
+    <div id="slider-feedback" class="slider-feedback-box">
+        <!-- Indholdet genereres automatisk ved indlæsning -->
+    </div>
+</div>
 
                         <button type="submit" class="btn">Generer Pace Band</button>
                     </form>
@@ -121,7 +126,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 LasseA.dk - Kodet med kaffe og løbeglæde.</p>
+            <p>&copy; 2026 LasseA.dk - Kodet med faxe kondi og løbeglæde.</p>
         </div>
     </footer>
 
