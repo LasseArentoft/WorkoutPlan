@@ -73,38 +73,37 @@ document.addEventListener('DOMContentLoaded', () => {
         splitsForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
-            // 1. Inputs: Hent data fra brugeren
+            // 1. Inputs: Hent data
             const D = parseFloat(document.getElementById('split-distance').value);
             const hours = parseInt(document.getElementById('split-h').value) || 0;
             const minutes = parseInt(document.getElementById('split-m').value) || 0;
             const seconds = parseInt(document.getElementById('split-s').value) || 0;
-            
-            // Konverter procent til decimal (P)
-            const P = parseFloat(document.getElementById('split-percent').value) / 100;
+            const X = parseFloat(document.getElementById('start-delay').value) || 0;
             
             // Samlet måltid i sekunder (T)
             const T = (hours * 3600) + (minutes * 60) + seconds;
 
+            // Validering
             if (D <= 0 || T <= 0) {
                 alert('Indtast venligst en gyldig distance og tid.');
                 return;
             }
+            if (D <= 1 && X > 0) {
+                alert('Lineær progression kræver en distance over 1 km.');
+                return;
+            }
 
-            // 2. Backend: Udregn T1 og T2
-            const T1 = T * (0.5 + (P / 2));
-            const T2 = T * (0.5 - (P / 2));
+            // 2. Backend: Matematikken
+            const P_avg = T / D;
+            const S = (2 * X) / (D - 1); // Trinnet vi trækker fra pr. km
 
-            // Udregn Pace1 og Pace2 i sekunder pr. km
-            const Pace1 = T1 / (D / 2);
-            const Pace2 = T2 / (D / 2);
-
-            // 3 & 4. Output: Generering af Pace Band
+            // 3 & 4. Generering af loop og tabel
             let accumulatedTime = 0;
             let tableHTML = `
                 <h3>Måltid: ${formatTime(T)}</h3>
                 <p style="text-align:center; font-size: 0.9em; margin-bottom: 15px;">
-                   Første halvdel: ${formatTime(Pace1)} min/km <br>
-                   Anden halvdel: ${formatTime(Pace2)} min/km
+                   Gennemsnitspace: ${formatTime(P_avg)} min/km <br>
+                   Første km: ${formatTime(P_avg + X)} min/km
                 </p>
                 <table class="pace-band">
                     <thead>
@@ -119,19 +118,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const totalRounds = Math.ceil(D);
 
-            for (let km = 1; km <= totalRounds; km++) {
-                // Tjek om vi er i første eller anden halvdel
-                let currentPace = (km <= D / 2) ? Pace1 : Pace2;
+            for (let i = 1; i <= totalRounds; i++) {
+                // Beregn pace for denne specifikke kilometer
+                // P_i = (P_avg + X) - (i - 1) * S
+                let currentPace = (P_avg + X) - ((i - 1) * S);
                 
-                // Håndter skæve distancer (f.eks. de sidste 195 meter på et maraton)
                 let stepFraction = 1;
-                let displayKm = km;
+                let displayKm = i;
                 
-                if (km > D) {
-                    stepFraction = D - (km - 1);
-                    displayKm = D; // Viser f.eks. "42.195" i stedet for "43"
+                // Håndtering af skæve slut-distancer (f.eks. km 42 til 42.195)
+                if (i > D) {
+                    stepFraction = D - (i - 1);
+                    displayKm = D; 
                 }
 
+                // Gemmer den rå, ubeskårne tid i akkumulatoren for at undgå afrundingsfejl
                 accumulatedTime += (currentPace * stepFraction);
 
                 tableHTML += `
@@ -145,7 +146,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             tableHTML += `</tbody></table>`;
             
-            // Udskriv til skærmen
             splitsResultContainer.innerHTML = tableHTML;
             splitsResultContainer.classList.remove('hidden');
         });
