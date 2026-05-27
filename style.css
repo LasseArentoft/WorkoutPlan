@@ -219,3 +219,41 @@ footer {
         font-size: 2.5rem;
     }
 }
+
+/* --- Pace Band Tabel --- */
+#splits-result {
+    margin-top: 30px;
+    overflow-x: auto;
+}
+
+#splits-result h3 {
+    text-align: center;
+    color: var(--primary-dark);
+    margin-bottom: 15px;
+}
+
+.pace-band {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.pace-band th, .pace-band td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.pace-band th {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    font-weight: bold;
+}
+
+.pace-band tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.pace-band tbody tr:hover {
+    background-color: #e0f2f1; /* En let grøn farve når man kører musen over */
+}
