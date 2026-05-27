@@ -9,6 +9,7 @@
 </head>
 <body>
 
+    <!-- Navigation -->
     <header>
         <div class="container nav-container">
             <a href="#" class="logo">LasseA<span>.dk</span></a>
@@ -23,6 +24,7 @@
         </div>
     </header>
 
+    <!-- Hero Sektion -->
     <section id="hjem" class="hero">
         <div class="container">
             <h1>Jagt den næste personlige rekord</h1>
@@ -32,6 +34,7 @@
     </section>
 
     <main>
+        <!-- Info Sektion -->
         <section id="om" class="info-section container">
             <div class="info-text">
                 <h2>Hvorfor jeg løber</h2>
@@ -39,6 +42,7 @@
             </div>
         </section>
 
+        <!-- Standard Pace Beregner -->
         <section id="beregner" class="calculator-section">
             <div class="container">
                 <div class="calc-card">
@@ -76,6 +80,7 @@
             </div>
         </section>
 
+        <!-- Progressiv Race Splits Beregner -->
         <section id="splits" class="calculator-section" style="background-color: var(--light-bg); color: var(--text-main);">
             <div class="container">
                 <div class="calc-card" style="background-color: white; color: var(--text-main);">
@@ -103,30 +108,32 @@
                             </div>
                         </div>
 
-                       <!-- Den nye dynamiske slider -->
-<div class="form-group">
-    <label for="start-delay">Vælg din startstrategi (Sekunder langsommere pr. km på 1. kilometer)</label>
-    <input type="range" id="start-delay" min="0" max="20" step="1" value="10">
-    
-    <!-- Herindsætter JavaScriptet realtids-teksten -->
-    <div id="slider-feedback" class="slider-feedback-box">
-        <!-- Indholdet genereres automatisk ved indlæsning -->
-    </div>
-</div>
+                        <!-- Dynamisk Slider -->
+                        <div class="form-group">
+                            <label for="start-delay">Vælg din startstrategi (Sekunder langsommere pr. km på 1. kilometer)</label>
+                            <input type="range" id="start-delay" min="0" max="20" step="1" value="10">
+                            
+                            <!-- Herindsætter JavaScriptet realtids-teksten -->
+                            <div id="slider-feedback" class="slider-feedback-box">
+                                <!-- Indholdet genereres automatisk ved indlæsning -->
+                            </div>
+                        </div>
 
                         <button type="submit" class="btn">Generer Pace Band</button>
                     </form>
 
                     <div id="splits-result" class="hidden">
-                        </div>
+                        <!-- Her indsættes tabellen via JavaScript -->
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 LasseA.dk - Kodet med faxe kondi og løbeglæde.</p>
+            <p>&copy; 2026 LasseA.dk - Kodet med kaffe og løbeglæde.</p>
         </div>
     </footer>
 
