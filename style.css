@@ -168,7 +168,7 @@ nav ul li a:hover {
     color: var(--primary-color);
 }
 
-.form-group input {
+.form-group input[type="number"] {
     padding: 12px;
     border-radius: 5px;
     border: 1px solid #333;
@@ -201,23 +201,30 @@ nav ul li a:hover {
     display: none;
 }
 
-/* --- Footer --- */
-footer {
-    background-color: #0a0a0a;
-    color: #888;
-    text-align: center;
-    padding: 30px 0;
+/* --- Slider & Feedback Boks --- */
+input[type=range] {
+    width: 100%;
+    margin: 15px 0;
+    cursor: pointer;
+    accent-color: var(--primary-color); 
 }
 
-/* --- Responsivitet --- */
-@media (max-width: 768px) {
-    .nav-container {
-        flex-direction: column;
-        gap: 15px;
-    }
-    .hero h1 {
-        font-size: 2.5rem;
-    }
+.slider-feedback-box {
+    margin-top: 5px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-left: 4px solid var(--primary-color);
+    border-radius: 5px;
+    color: #333;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.slider-feedback-box strong {
+    display: block;
+    color: var(--primary-dark);
+    font-size: 1.1rem;
+    margin-bottom: 5px;
 }
 
 /* --- Pace Band Tabel --- */
@@ -255,31 +262,24 @@ footer {
 }
 
 .pace-band tbody tr:hover {
-    background-color: #e0f2f1; /* En let grøn farve når man kører musen over */
+    background-color: #e0f2f1;
 }
 
-/* --- Slider & Feedback Boks --- */
-input[type=range] {
-    width: 100%;
-    margin: 15px 0;
-    cursor: pointer;
-    accent-color: var(--primary-color); /* Farver slideren med din grønne temafarve */
+/* --- Footer --- */
+footer {
+    background-color: #0a0a0a;
+    color: #888;
+    text-align: center;
+    padding: 30px 0;
 }
 
-.slider-feedback-box {
-    margin-top: 5px;
-    padding: 15px;
-    background-color: #f8f9fa;
-    border-left: 4px solid var(--primary-color);
-    border-radius: 5px;
-    color: #333;
-    font-size: 0.95rem;
-    line-height: 1.4;
-}
-
-.slider-feedback-box strong {
-    display: block;
-    color: var(--primary-dark);
-    font-size: 1.1rem;
-    margin-bottom: 5px;
+/* --- Responsivitet --- */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+    }
 }
