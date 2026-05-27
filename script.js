@@ -18,45 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================================================
-   Dynamisk Slider Logik (Ekspert-tekster)
-   ========================================================================== */
-const slider = document.getElementById('start-delay');
-const feedbackBox = document.getElementById('slider-feedback');
-
-// Funktion der kortlægger værdien til den rette tekst
-function updateSliderFeedback() {
-    const x = parseInt(slider.value);
-    let title = "";
-    let text = "";
-
-    if (x === 0) {
-        title = "Even split (Fladt tempo)";
-        text = "Kræver stor erfaring og mental udholdenhed. Der er høj risiko for at ramme muren på de længere distancer, da systemet ikke får tid til at varme op.";
-    } else if (x >= 1 && x <= 5) {
-        title = "Let progression";
-        text = "Ideelt til en hurtig 5 km eller 10 km, hvor du lige skal finde den fysiologiske rytme og vejrtrækning de første 1000 meter, før du låser dig fast på gennemsnitsfarten.";
-    } else if (x >= 6 && x <= 12) {
-        title = "Klassisk progressiv (Anbefales)";
-        text = "Det gyldne sweet-spot. Giver kroppen tid til at varme led og sener op og finde laktat-balancen. Minimerer risikoen for at syre til for tidligt.";
-    } else if (x >= 13 && x <= 20) {
-        title = "Konservativ start / \"Byg motoren\"";
-        text = "Et meget sikkert udlæg. Anbefales stærkt til maraton, til restitutionsløb, eller til løberen, der altid har tendens til at lægge for hårdt ud og 'dø' til sidst.";
-    }
-
-    // Indsæt teksten dynamisk i HTML'en
-    feedbackBox.innerHTML = `<strong>${x} sekunder: ${title}</strong>${text}`;
-}
-
-// Lyt efter ændringer (når brugeren trækker i slideren) og opdater teksten
-if (slider && feedbackBox) {
-    slider.addEventListener('input', updateSliderFeedback);
-    
-    // Kør funktionen én gang ved sidens indlæsning, så default-værdien (10) vises korrekt
-    updateSliderFeedback(); 
-}
-
-    /* ==========================================================================
-       1. Standard Pace Beregner (Den oprindelige funktion)
+       1. Standard Pace Beregner 
        ========================================================================== */
     const paceForm = document.getElementById('pace-form');
     const resultBox = document.getElementById('result');
@@ -85,14 +47,46 @@ if (slider && feedbackBox) {
 
             const secondsPerKm = totalSeconds / distance;
             
-            // Brug vores hjælpefunktion til at formatere tiden
             paceResult.textContent = formatTime(secondsPerKm);
             resultBox.classList.remove('hidden');
         });
     }
 
     /* ==========================================================================
-       2. Race Splits Beregner (Progressiv lineær strategi)
+       2. Dynamisk Slider Logik (Ekspert-tekster)
+       ========================================================================== */
+    const slider = document.getElementById('start-delay');
+    const feedbackBox = document.getElementById('slider-feedback');
+
+    function updateSliderFeedback() {
+        const x = parseInt(slider.value);
+        let title = "";
+        let text = "";
+
+        if (x === 0) {
+            title = "Even split (Fladt tempo)";
+            text = "Kræver stor erfaring og mental udholdenhed. Der er høj risiko for at ramme muren på de længere distancer, da systemet ikke får tid til at varme op.";
+        } else if (x >= 1 && x <= 5) {
+            title = "Let progression";
+            text = "Ideelt til en hurtig 5 km eller 10 km, hvor du lige skal finde den fysiologiske rytme og vejrtrækning de første 1000 meter, før du låser dig fast på gennemsnitsfarten.";
+        } else if (x >= 6 && x <= 12) {
+            title = "Klassisk progressiv (Anbefales)";
+            text = "Det gyldne sweet-spot. Giver kroppen tid til at varme led og sener op og finde laktat-balancen. Minimerer risikoen for at syre til for tidligt.";
+        } else if (x >= 13 && x <= 20) {
+            title = "Konservativ start / \"Byg motoren\"";
+            text = "Et meget sikkert udlæg. Anbefales stærkt til maraton, til restitutionsløb, eller til løberen, der altid har tendens til at lægge for hårdt ud og 'dø' til sidst.";
+        }
+
+        feedbackBox.innerHTML = `<strong>${x} sekunder: ${title}</strong>${text}`;
+    }
+
+    if (slider && feedbackBox) {
+        slider.addEventListener('input', updateSliderFeedback);
+        updateSliderFeedback(); 
+    }
+
+    /* ==========================================================================
+       3. Race Splits Beregner (Progressiv lineær strategi)
        ========================================================================== */
     const splitsForm = document.getElementById('splits-form');
     const splitsResultContainer = document.getElementById('splits-result');
@@ -101,17 +95,14 @@ if (slider && feedbackBox) {
         splitsForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
-            // Hent data
             const D = parseFloat(document.getElementById('split-distance').value);
             const hours = parseInt(document.getElementById('split-h').value) || 0;
             const minutes = parseInt(document.getElementById('split-m').value) || 0;
             const seconds = parseInt(document.getElementById('split-s').value) || 0;
-            const X = parseFloat(document.getElementById('start-delay').value) || 0;
+            const X = parseInt(document.getElementById('start-delay').value) || 0;
             
-            // Samlet måltid i sekunder (T)
             const T = (hours * 3600) + (minutes * 60) + seconds;
 
-            // Validering
             if (D <= 0 || T <= 0 || isNaN(D) || isNaN(T)) {
                 alert('Indtast venligst en gyldig distance og tid.');
                 return;
@@ -121,11 +112,9 @@ if (slider && feedbackBox) {
                 return;
             }
 
-            // Matematikken
             const P_avg = T / D;
-            const S = (2 * X) / (D - 1); // Trinnet vi trækker fra pr. km
+            const S = (2 * X) / (D - 1); 
 
-            // Generering af loop og tabel
             let accumulatedTime = 0;
             let tableHTML = `
                 <h3>Måltid: ${formatTime(T)}</h3>
@@ -147,13 +136,11 @@ if (slider && feedbackBox) {
             const totalRounds = Math.ceil(D);
 
             for (let i = 1; i <= totalRounds; i++) {
-                // Beregn pace for denne specifikke kilometer
                 let currentPace = (P_avg + X) - ((i - 1) * S);
                 
                 let stepFraction = 1;
                 let displayKm = i;
                 
-                // Håndtering af skæve slut-distancer
                 if (i > D) {
                     stepFraction = D - (i - 1);
                     displayKm = D; 
