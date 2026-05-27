@@ -257,3 +257,29 @@ footer {
 .pace-band tbody tr:hover {
     background-color: #e0f2f1; /* En let grøn farve når man kører musen over */
 }
+
+/* --- Slider & Feedback Boks --- */
+input[type=range] {
+    width: 100%;
+    margin: 15px 0;
+    cursor: pointer;
+    accent-color: var(--primary-color); /* Farver slideren med din grønne temafarve */
+}
+
+.slider-feedback-box {
+    margin-top: 5px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-left: 4px solid var(--primary-color);
+    border-radius: 5px;
+    color: #333;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.slider-feedback-box strong {
+    display: block;
+    color: var(--primary-dark);
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
